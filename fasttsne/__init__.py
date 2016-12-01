@@ -1,8 +1,11 @@
 import scipy.linalg as la
 import numpy as np
 
-
 from .fasttsne import _TSNE as TSNE
+
+
+class TSNEError(Exception):
+    pass
 
 
 def fast_tsne(data, pca_d=None, d=2, perplexity=30., theta=0.5):
@@ -24,6 +27,9 @@ def fast_tsne(data, pca_d=None, d=2, perplexity=30., theta=0.5):
                         very long for dataset > 5000 samples.
     """
     N, _ = data.shape
+    print "Shape: {}".format(data.shape)
+    if N-1 < (3 * perplexity):
+        raise TSNEError('Perplexity too large for the number of data points!')
 
     # inplace!!
 
