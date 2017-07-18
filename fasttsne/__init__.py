@@ -27,7 +27,7 @@ def fast_tsne(data, pca_d=None, d=2, perplexity=30., theta=0.5):
                         very long for dataset > 5000 samples.
     """
     N, _ = data.shape
-    print "Shape: {}".format(data.shape)
+    print("Shape: {}".format(data.shape))
     if N-1 < (3 * perplexity):
         raise TSNEError('Perplexity too large for the number of data points!')
 
